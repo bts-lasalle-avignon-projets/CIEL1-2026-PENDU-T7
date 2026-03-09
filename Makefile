@@ -1,4 +1,4 @@
-TARGET=justeprix
+TARGET=pendu
 
 DOSSIER_INCLUDE = ./src
 DOSSIER_SRC = ./src

@@ -7,7 +7,7 @@
 
 void jouer()
 {
-    std::string message = "Le jeu du Juste Prix va bientôt commencer !";
+    std::string message = "Le jeu du PENDU va bientôt commencer !";
 
 // exemple de débogage pour une variable
 #ifdef DEBUG_CONTROLLER
