@@ -11,4 +11,6 @@ struct Partie
     int erreursMax;
 };
 
+void choisirMotSecret(Partie *partie);
+
 #endif // MODEL_H
