@@ -3,6 +3,6 @@
 
 #include <string>
 
-void afficherMessage(const std::string& message);
+void demanderNomJoueur(char *nom);
 
 #endif // VIEW_H
