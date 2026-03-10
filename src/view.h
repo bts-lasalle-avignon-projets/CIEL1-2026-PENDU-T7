@@ -3,6 +3,7 @@
 
 #include <string>
 
+void afficherTitre();
 void demanderNomJoueur(char *nom);
 
 #endif // VIEW_H
