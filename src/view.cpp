@@ -1,7 +1,9 @@
 #include "view.h"
 #include <iostream>
+using namespace std;
 
-void afficherMessage(const std::string& message)
+void demanderNomJoueur(char *nom)
 {
-    std::cout << message << std::endl;
+    cout << "Entrer votre nom : ";
+    cin >> nom;    
 }

@@ -3,6 +3,5 @@
 
 //#define DEBUG_CONTROLLER
 
-void jouer();
 
 #endif // CONTROLLER_H
