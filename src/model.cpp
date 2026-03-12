@@ -23,5 +23,5 @@ void initialiserMotATrouver(Partie *partie)
     {
         partie->motATrouver[i] = '_';
     }
-    partie->motATrouver[longueur] = '\0';
+    partie->motATrouver[longueurMot] = '\0';
 }
