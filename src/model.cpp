@@ -15,3 +15,13 @@ void choisirMotSecret(Partie *partie)
     indiceMotSecret = rand() % nbMots;
     strcpy(partie->motSecret, mots[indiceMotSecret]);
 }
+
+void initialiserMotATrouver(Partie *partie)
+{
+    int longueurMot = strlen(partie->motSecret);
+    for(int i = 0; i < longueurMot; i++)
+    {
+        partie->motATrouver[i] = '_';
+    }
+    partie->motATrouver[longueurMot] = '\0';
+}
