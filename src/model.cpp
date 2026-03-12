@@ -25,3 +25,14 @@ void initialiserMotATrouver(Partie *partie)
     }
     partie->motATrouver[longueurMot] = '\0';
 }
+
+void mettreAJourMotATrouver(Partie *partie, char lettre)
+{
+    for(int i = 0; i < strlen(partie->motSecret); i++)
+    {
+        if(partie->motSecret[i] == lettre)
+        {
+            partie->motATrouver[i] = lettre;
+        }
+    }
+}

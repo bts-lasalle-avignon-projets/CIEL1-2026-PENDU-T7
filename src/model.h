@@ -13,5 +13,6 @@ struct Partie
 
 void choisirMotSecret(Partie *partie);
 void initialiserMotATrouver(Partie *partie);
+void mettreAJourMotATrouver(Partie *partie, char lettre);
 
 #endif // MODEL_H
