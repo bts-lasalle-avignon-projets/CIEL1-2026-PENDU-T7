@@ -7,6 +7,15 @@ using namespace std;
 
 char mots[][MAX_LETTRES] = {"ordinateur", "clavier", "linux", "processus", "python", "windows", "programmation", "java", "souris"};
 
+void initialiserPartie(Partie *partie)
+{
+    partie->erreurs = 0;
+    partie->erreursMax = NB_MAX_ERREURS;
+
+    choisirMotSecret(partie);
+    initialiserMotATrouver(partie);
+}
+
 void choisirMotSecret(Partie *partie)
 {
     int indiceMotSecret;
