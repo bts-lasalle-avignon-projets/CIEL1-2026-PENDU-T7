@@ -27,7 +27,7 @@ void afficherMotATrouver(char *motATrouver)
     cout << endl;
 }
 
-void afficherErreurs(int erreurs; int erreursMax)
+void afficherErreurs(int erreurs, int erreursMax)
 {
     cout << "Erreurs : " << erreurs << "/" << erreursMax << endl;
 }
