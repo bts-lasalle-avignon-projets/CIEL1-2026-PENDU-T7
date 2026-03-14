@@ -15,7 +15,7 @@ void demanderNomJoueur(char *nom)
     cin >> nom;
 }
 
-void afficherMotATrouver(char *motATrouver);
+void afficherMotATrouver(char *motATrouver)
 {
     int i = 0;
     cout << "Mot à trouver : ";
