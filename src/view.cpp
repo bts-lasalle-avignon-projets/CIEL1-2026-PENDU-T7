@@ -14,3 +14,13 @@ void demanderNomJoueur(char *nom)
     cout << "Entrer votre nom : ";
     cin >> nom;
 }
+
+char demanderLettre()
+{
+    char lettre;
+
+    cout << "Propose une lettre : ";
+    cin >> lettre;
+
+    return lettre;
+}
