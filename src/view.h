@@ -5,5 +5,6 @@
 
 void afficherTitre();
 void demanderNomJoueur(char *nom);
+char demanderLettre();
 
 #endif // VIEW_H
