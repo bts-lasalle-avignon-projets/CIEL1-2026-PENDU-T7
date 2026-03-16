@@ -46,3 +46,8 @@ void afficherVictoire(char *nom, int erreurs, int erreursMax)
 {
     cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs!" << endl;
 }
+
+void afficherDefaite(char *nom, char *motSecret)
+{
+    cout << "Dommage " << nom << ", vous avez perdu, le mot était " << motSecret << "." << endl;
+}
