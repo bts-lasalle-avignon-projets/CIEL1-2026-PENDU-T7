@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cctype>
 using namespace std;
 
 char mots[][MAX_LETTRES] = {"ordinateur", "clavier", "linux", "processus", "python", "windows", "programmation", "java", "souris"};
@@ -54,4 +55,21 @@ bool testerVictoire(Partie *partie)
 bool testerDefaite(Partie *partie)
 {
     return partie->erreurs >= partie->erreursMax;
+}
+
+int verifierLettre(Partie *partie, char lettre)
+{
+    if(!isalpha(lettre))
+    {
+        return -1;
+    }
+    lettre = tolower(lettre);
+    for(int i = 0 ; i < strlen(partie->motSecret) ; i++)
+    {
+        if(partie->motSecret[i] == lettre)
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
