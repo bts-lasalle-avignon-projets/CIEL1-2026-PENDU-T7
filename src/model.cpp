@@ -50,7 +50,7 @@ void mettreAJourMotATrouver(Partie *partie, char lettre)
 
 bool testerVictoire(Partie *partie)
 {
-    return partie->motSecret == partie->motATrouver;
+    return strcmp(partie->motSecret, partie->motATrouver);
 }
 
 bool testerDefaite(Partie *partie)
