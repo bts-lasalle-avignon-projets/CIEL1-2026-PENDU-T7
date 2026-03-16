@@ -9,13 +9,13 @@ void afficherTitre()
     cout << "================" << endl;
 }
 
-void demanderNomJoueur(char *nom)
+void demanderNomJoueur(char* nom)
 {
     cout << "Entrer votre nom : ";
     cin >> nom;
 }
 
-void afficherMotATrouver(char *motATrouver)
+void afficherMotATrouver(char* motATrouver)
 {
     int i = 0;
     cout << "Mot à trouver : ";
@@ -42,12 +42,18 @@ char demanderLettre()
     return lettre;
 }
 
-void afficherVictoire(char *nom, int erreurs, int erreursMax)
+void afficherVictoire(char* nom, int erreurs, int erreursMax)
 {
-    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs!" << endl;
+    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax
+         << " erreurs!" << endl;
 }
 
-void afficherDefaite(char *nom, char *motSecret)
+void afficherDefaite(char* nom, char* motSecret)
 {
     cout << "Dommage " << nom << ", vous avez perdu, le mot était " << motSecret << "." << endl;
+}
+
+void afficherLettreIncorrecte()
+{
+    cout << "Lettre invalide!" << endl;
 }
