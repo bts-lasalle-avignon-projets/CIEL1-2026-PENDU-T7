@@ -2,6 +2,6 @@
 
 int main()
 {
-
+    demarrerJeu();
     return 0;
 }

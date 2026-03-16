@@ -3,6 +3,14 @@
 #ifdef DEBUG_CONTROLLER
 #include <iostream>
 
+void demarrerJeu()
+{
+    char nom[MAX_LETTRES];
+    afficherTitre();
+    demanderNomJoueur(nom);
+    jouer(nom);
+}
+
 void jouer(char *nom)
 {
     Partie partie;
