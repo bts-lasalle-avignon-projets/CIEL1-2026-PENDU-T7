@@ -19,7 +19,7 @@ void jouer(char *nom)
         }
         else if(resultatTestLettre == -1)
         {
-            //afficher message de lettre invalide
+            afficherLettreIncorrecte();
         }
         else
         {
