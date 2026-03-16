@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 //#define DEBUG_CONTROLLER
 
-void jouer(char *nom);
+void jouer();
+void jouerPartie(char *nom);
 
 #endif // CONTROLLER_H

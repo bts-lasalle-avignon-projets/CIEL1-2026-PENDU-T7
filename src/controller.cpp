@@ -1,9 +1,19 @@
 #include "controller.h"
 #include "view.h"
+#include "model.h"
 #ifdef DEBUG_CONTROLLER
 #include <iostream>
+#endif
 
-void jouer(char *nom)
+void jouer()
+{
+    char nom[MAX_LETTRES];
+    afficherTitre();
+    demanderNomJoueur(nom);
+    jouerPartie(nom);
+}
+
+void jouerPartie(char *nom)
 {
     Partie partie;
     initialiserPartie(&partie);
@@ -36,4 +46,3 @@ void jouer(char *nom)
     }
 }
 
-#endif
