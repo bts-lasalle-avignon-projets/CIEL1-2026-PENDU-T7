@@ -6,8 +6,7 @@
 #include <cctype>
 using namespace std;
 
-char mots[][MAX_LETTRES] = { "ordinateur", "clavier",       "linux", "processus", "python",
-                             "windows",    "programmation", "java",  "souris" };
+char mots[][MAX_LETTRES] = {"ordinateur", "clavier", "linux", "processus", "python", "windows", "programmation", "java", "souris"};
 
 void initialiserPartie(Partie *partie)
 {
