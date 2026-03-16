@@ -45,3 +45,8 @@ void mettreAJourMotATrouver(Partie *partie, char lettre)
         }
     }
 }
+
+bool testerVictoire(Partie * partie)
+{
+    return partie->motSecret == partie->motATrouver;
+}
