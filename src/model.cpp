@@ -64,7 +64,7 @@ int verifierLettre(Partie *partie, char lettre)
         return -1;
     }
     lettre = tolower(lettre);
-    for(int i = 0 ; i < strlen(partie->motSecret) ; i++)
+    for(int i = 0; i < strlen(partie->motSecret); i++)
     {
         if(partie->motSecret[i] == lettre)
         {
