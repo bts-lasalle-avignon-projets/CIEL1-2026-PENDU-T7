@@ -51,3 +51,8 @@ void afficherDefaite(char *nom, char *motSecret)
 {
     cout << "Dommage " << nom << ", vous avez perdu, le mot était " << motSecret << "." << endl;
 }
+
+void afficherLettreIncorrecte()
+{
+    cout << "Lettre invalide!" << endl;
+}

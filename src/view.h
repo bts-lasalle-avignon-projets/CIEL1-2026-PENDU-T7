@@ -10,5 +10,6 @@ void afficherErreurs(int erreurs, int erreursMax);
 char demanderLettre();
 void afficherVictoire(char *nom, int erreurs, int erreursMax);
 void afficherDefaite(char *nom, char *motSecret);
+void afficherLettreIncorrecte();
 
 #endif // VIEW_H
