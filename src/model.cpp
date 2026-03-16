@@ -50,3 +50,8 @@ bool testerVictoire(Partie *partie)
 {
     return partie->motSecret == partie->motATrouver;
 }
+
+bool testerDefaite(Partie *partie)
+{
+    return partie->erreurs >= partie->erreursMax;
+}

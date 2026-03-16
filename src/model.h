@@ -17,5 +17,6 @@ void choisirMotSecret(Partie *partie);
 void initialiserMotATrouver(Partie *partie);
 void mettreAJourMotATrouver(Partie *partie, char lettre);
 bool testerVictoire(Partie *partie);
+bool testerDefaite(Partie *partie);
 
 #endif // MODEL_H
