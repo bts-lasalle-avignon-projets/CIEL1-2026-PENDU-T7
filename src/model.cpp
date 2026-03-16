@@ -38,7 +38,8 @@ void initialiserMotATrouver(Partie *partie)
 
 void mettreAJourMotATrouver(Partie *partie, char lettre)
 {
-    for(int i = 0; i < strlen(partie->motSecret); i++)
+    int longueurMot = strlen(partie->motSecret);
+    for(int i = 0; i < longueurMot; i++)
     {
         if(partie->motSecret[i] == lettre)
         {
@@ -64,7 +65,8 @@ int verifierLettre(Partie *partie, char lettre)
         return -1;
     }
     lettre = tolower(lettre);
-    for(int i = 0; i < strlen(partie->motSecret); i++)
+    int longueurMot = strlen(partie->motSecret);
+    for(int i = 0; i < longueurMot; i++)
     {
         if(partie->motSecret[i] == lettre)
         {
