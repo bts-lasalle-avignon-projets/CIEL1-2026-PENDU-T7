@@ -41,3 +41,8 @@ char demanderLettre()
 
     return lettre;
 }
+
+void afficherVictoire(char *nom, int erreurs, int erreursMax)
+{
+    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs!" << endl;
+}
