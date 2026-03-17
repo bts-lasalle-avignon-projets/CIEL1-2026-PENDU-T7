@@ -8,8 +8,8 @@ struct Partie
 {
     char motSecret[MAX_LETTRES];
     char motATrouver[MAX_LETTRES];
-    int  erreurs;
-    int  erreursMax;
+    int erreurs;
+    int erreursMax;
 };
 
 void initialiserPartie(Partie *partie);
