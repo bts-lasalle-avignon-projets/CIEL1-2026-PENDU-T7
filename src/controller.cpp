@@ -22,7 +22,7 @@ void jouerPartie(char *nom)
         afficherMotATrouver(partie.motATrouver);
         afficherErreurs(partie.erreurs, partie.erreursMax);
         char lettre = demanderLettre();
-        int  resultatTestLettre = verifierLettre(&partie, lettre); // 1 si dans mot, 0 si pas dans le mot, -1 si pas une lettre
+        int resultatTestLettre = verifierLettre(&partie, lettre); // 1 si dans mot, 0 si pas dans le mot, -1 si pas une lettre
         if(resultatTestLettre == 1)
         {
             mettreAJourMotATrouver(&partie, lettre);
