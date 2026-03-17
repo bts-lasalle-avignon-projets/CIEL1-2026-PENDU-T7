@@ -18,6 +18,7 @@ void initialiserMotATrouver(Partie *partie);
 void mettreAJourMotATrouver(Partie *partie, char lettre);
 bool testerVictoire(Partie *partie);
 bool testerDefaite(Partie *partie);
-int verifierLettre(Partie *partie, char lettre);
+int  verifierLettre(Partie *partie, char lettre);
+void afficherResultatPartie(Partie *partie, char *nom);
 
-#endif // MODEL_H
+#endif //MODEL_H

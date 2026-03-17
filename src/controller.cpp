@@ -36,13 +36,5 @@ void jouerPartie(char *nom)
             partie.erreurs++;
         }
     }
-    if(testerVictoire(&partie))
-    {
-        afficherVictoire(nom, partie.erreurs, partie.erreursMax);
-    }
-    else
-    {
-        afficherDefaite(nom, partie.motSecret);
-    }
+    afficherResultatPartie(&partie, nom);
 }
-

@@ -1,4 +1,5 @@
 #include "model.h"
+#include "view.h"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +21,7 @@ void initialiserPartie(Partie *partie)
 void choisirMotSecret(Partie *partie)
 {
     int indiceMotSecret;
-    int nbMots = sizeof(mots) / sizeof(mots[0]); //Nombre de mots dans le tableau.
+    int nbMots = sizeof(mots) / sizeof(mots[0]); // Nombre de mots dans le tableau.
     srand(time(NULL));
     indiceMotSecret = rand() % nbMots;
     strcpy(partie->motSecret, mots[indiceMotSecret]);
@@ -74,4 +75,16 @@ int verifierLettre(Partie *partie, char lettre)
         }
     }
     return 0;
+}
+
+void afficherResultatPartie(Partie *partie, char *nom)
+{
+    if(testerVictoire(partie))
+    {
+        afficherVictoire(nom, partie->erreurs, partie->erreursMax);
+    }
+    else
+    {
+        afficherDefaite(nom, partie->motSecret);
+    }
 }

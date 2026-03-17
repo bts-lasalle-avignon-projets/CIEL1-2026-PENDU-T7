@@ -56,3 +56,4 @@ void afficherLettreIncorrecte()
 {
     cout << "Lettre invalide!" << endl;
 }
+
