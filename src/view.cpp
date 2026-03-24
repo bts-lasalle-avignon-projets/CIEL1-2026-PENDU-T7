@@ -35,16 +35,14 @@ void afficherErreurs(int erreurs, int erreursMax)
 char demanderLettre()
 {
     char lettre;
-
     cout << "Propose une lettre : ";
     cin >> lettre;
-
     return lettre;
 }
 
-void afficherVictoire(char *nom, int erreurs, int erreursMax)
+void afficherVictoire(char *nom, int erreurs, int erreursMax, char *motSecret)
 {
-    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs!" << endl;
+    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs" << ", le mot était bien " << motSecret << "!" endl;
 }
 
 void afficherDefaite(char *nom, char *motSecret)
@@ -57,3 +55,11 @@ void afficherLettreIncorrecte()
     cout << "Lettre invalide!" << endl;
 }
 
+char rejouerPartieReponse()
+{
+    char reponse;
+    cout << "Voulez-vous rejouer ? (O/N) ";
+    cin >> reponse;
+    cout << endl;
+    return reponse;
+}
