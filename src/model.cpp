@@ -75,3 +75,16 @@ int verifierLettre(Partie *partie, char lettre)
     }
     return 0;
 }
+
+bool testerRejouerPartie(char reponse)
+{
+    if(reponse == 'o' || reponse == 'O')
+    {
+        return 1;
+    }
+    else if(reponse == 'n' || reponse == 'N')
+    {
+        return 0;
+    }
+    return 0;
+}
