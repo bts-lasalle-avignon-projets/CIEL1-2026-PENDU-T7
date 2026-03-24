@@ -48,7 +48,7 @@ void afficherResultatPartie(Partie *partie, char *nom)
 {
     if(testerVictoire(partie))
     {
-        afficherVictoire(nom, partie->erreurs, partie->erreursMax);
+        afficherVictoire(nom, partie->erreurs, partie->erreursMax, partie->motSecret);
     }
     else
     {
