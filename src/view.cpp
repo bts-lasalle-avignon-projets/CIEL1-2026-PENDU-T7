@@ -42,7 +42,7 @@ char demanderLettre()
 
 void afficherVictoire(char *nom, int erreurs, int erreursMax, char *motSecret)
 {
-    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs" << ", le mot était bien " << motSecret << "!" endl;
+    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs" << ", le mot était bien " << motSecret << "!" << endl;
 }
 
 void afficherDefaite(char *nom, char *motSecret)
