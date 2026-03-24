@@ -11,6 +11,14 @@ void jouer()
     afficherTitre();
     demanderNomJoueur(nom);
     jouerPartie(nom);
+    char reponse = rejouerPartieReponse();
+    bool rejouer = testerRejouerPartie(reponse);
+    while(rejouer)
+    {
+        jouerPartie(nom);
+        char reponse = rejouerPartieReponse();
+        rejouer = testerRejouerPartie(reponse);
+    }
 }
 
 void jouerPartie(char *nom)

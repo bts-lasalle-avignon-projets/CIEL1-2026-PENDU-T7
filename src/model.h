@@ -19,5 +19,6 @@ void mettreAJourMotATrouver(Partie *partie, char lettre);
 bool testerVictoire(Partie *partie);
 bool testerDefaite(Partie *partie);
 int verifierLettre(Partie *partie, char lettre);
+bool testerRejouerPartie(char reponse);
 
-#endif // MODEL_H
+#endif //MODEL_H

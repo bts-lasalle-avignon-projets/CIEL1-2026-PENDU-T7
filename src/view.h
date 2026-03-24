@@ -8,8 +8,9 @@ void demanderNomJoueur(char *nom);
 void afficherMotATrouver(char *motATrouver);
 void afficherErreurs(int erreurs, int erreursMax);
 char demanderLettre();
-void afficherVictoire(char *nom, int erreurs, int erreursMax);
+void afficherVictoire(char *nom, int erreurs, int erreursMax, char *motSecret);
 void afficherDefaite(char *nom, char *motSecret);
 void afficherLettreIncorrecte();
+char rejouerPartieReponse();
 
 #endif // VIEW_H
