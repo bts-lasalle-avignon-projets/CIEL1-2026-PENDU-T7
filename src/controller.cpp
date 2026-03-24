@@ -21,20 +21,37 @@ void jouerPartie(char *nom)
     {
         afficherMotATrouver(partie.motATrouver);
         afficherErreurs(partie.erreurs, partie.erreursMax);
-        char lettre = demanderLettre();
-        int resultatTestLettre = verifierLettre(&partie, lettre); // 1 si dans mot, 0 si pas dans le mot, -1 si pas une lettre
-        if(resultatTestLettre == 1)
-        {
-            mettreAJourMotATrouver(&partie, lettre);
-        }
-        else if(resultatTestLettre == -1)
-        {
-            afficherLettreIncorrecte();
-        }
-        else
-        {
-            partie.erreurs++;
-        }
+        mettreAJourJeu(&partie);
     }
     afficherResultatPartie(&partie, nom);
+}
+
+void mettreAJourJeu(Partie *partie)
+{
+    char lettre = demanderLettre();
+    int resultatTestLettre = verifierLettre(partie, lettre);
+    if(resultatTestLettre == 1)
+    {
+        mettreAJourMotATrouver(partie, lettre);
+    }
+    else if(resultatTestLettre == -1)
+    {
+        afficherLettreIncorrecte();
+    }
+    else
+    {
+        partie->erreurs++;
+    }
+}
+
+void afficherResultatPartie(Partie *partie, char *nom)
+{
+    if(testerVictoire(partie))
+    {
+        afficherVictoire(nom, partie->erreurs, partie->erreursMax);
+    }
+    else
+    {
+        afficherDefaite(nom, partie->motSecret);
+    }
 }

@@ -35,7 +35,6 @@ void afficherErreurs(int erreurs, int erreursMax)
 char demanderLettre()
 {
     char lettre;
-
     cout << "Propose une lettre : ";
     cin >> lettre;
 
@@ -56,4 +55,3 @@ void afficherLettreIncorrecte()
 {
     cout << "Lettre invalide!" << endl;
 }
-

@@ -13,7 +13,6 @@ void initialiserPartie(Partie *partie)
 {
     partie->erreurs = 0;
     partie->erreursMax = NB_MAX_ERREURS;
-
     choisirMotSecret(partie);
     initialiserMotATrouver(partie);
 }
@@ -75,16 +74,4 @@ int verifierLettre(Partie *partie, char lettre)
         }
     }
     return 0;
-}
-
-void afficherResultatPartie(Partie *partie, char *nom)
-{
-    if(testerVictoire(partie))
-    {
-        afficherVictoire(nom, partie->erreurs, partie->erreursMax);
-    }
-    else
-    {
-        afficherDefaite(nom, partie->motSecret);
-    }
 }
