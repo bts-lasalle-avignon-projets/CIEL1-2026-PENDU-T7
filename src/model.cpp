@@ -7,7 +7,7 @@
 #include <cctype>
 using namespace std;
 
-char mots[][MAX_LETTRES] = {"ordinateur", "clavier", "linux", "processus", "python", "windows", "programmation", "java", "souris"};
+char mots[][MAX_LETTRES] = { "ordinateur", "clavier", "linux", "processus", "python", "windows", "programmation", "java", "souris" };
 
 void initialiserPartie(Partie *partie)
 {
@@ -81,10 +81,23 @@ void afficherResultatPartie(Partie *partie, char *nom)
 {
     if(testerVictoire(partie))
     {
-        afficherVictoire(nom, partie->erreurs, partie->erreursMax);
+        afficherVictoire(nom, partie->erreurs, partie->erreursMax, partie->motSecret);
     }
     else
     {
         afficherDefaite(nom, partie->motSecret);
     }
+}
+
+bool testerRejouerPartie(char reponse)
+{
+    if(reponse == 'o' || reponse == 'O')
+    {
+        return 1;
+    }
+    else if(reponse == 'n' || reponse == 'N')
+    {
+        return 0;
+    }
+    return 0;
 }
