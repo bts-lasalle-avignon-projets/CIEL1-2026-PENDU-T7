@@ -11,6 +11,7 @@
     - [Itération 3](#itération-3)
   - [Changelog](#changelog)
     - [Version 1.0](#version-10)
+    - [Version 1.1](#version-11)
   - [TODO](#todo)
   - [Équipe de développement](#équipe-de-développement)
 
@@ -81,9 +82,14 @@ $ ./pendu.out
 - [x] Vérifier si la lettre existe et/ou dans le mot
 - [x] Afficher une victoire ou une défaite
 
+### Version 1.1
+
+- [x] Dévoiler la première et la dernière lettre du mot
+- [x] Saisir une lettre en capitale n'est pas valide
+
 ## TODO
 
-- [ ] Remplacer les types char en string
+- [ ] Pouvoir choisir une difficultés
 - [ ] Pouvoir choisir des thèmes
 - [ ] Implémenter une fonction permettant de vérifier si le mot saisi est le mot secret
 - [ ] Visualiser les lettres proposées
@@ -91,8 +97,8 @@ $ ./pendu.out
 
 ## Équipe de développement
 
-- BORGEL LAMARQUE Antonin
-- GREINER Jovan
+- BORGEL LAMARQUE Antonin : antoninborgellamarque@gmail.com
+- GREINER Jovan : jovandelemer30@gmail.com
 
 ---
 &copy; 2026-2027 BTS LaSalle Avignon
