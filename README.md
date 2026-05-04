@@ -89,7 +89,7 @@ $ ./pendu.out
 
 ## TODO
 
-- [ ] Pouvoir choisir une difficultés
+- [ ] Pouvoir choisir une difficulté
 - [ ] Pouvoir choisir des thèmes
 - [ ] Implémenter une fonction permettant de vérifier si le mot saisi est le mot secret
 - [ ] Visualiser les lettres proposées
