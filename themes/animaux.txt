@@ -1,0 +1,9 @@
+elephant
+girafe
+crocodile
+dauphin
+kangourou
+papillon
+perroquet
+hamster
+tortue
