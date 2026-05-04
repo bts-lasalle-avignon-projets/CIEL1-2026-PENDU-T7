@@ -1,28 +1,27 @@
 #include "view.h"
+#include "model.h"
 #include <iostream>
 using namespace std;
 
 void afficherTitre()
 {
     cout << "================" << endl;
-    cout << "   Pendu v1.0   " << endl;
+    cout << "   Pendu v" << VERSION << endl;
     cout << "================" << endl;
 }
 
-void demanderNomJoueur(char *nom)
+void demanderNomJoueur(char* nom)
 {
     cout << "Entrer votre nom : ";
     cin >> nom;
 }
 
-void afficherMotATrouver(char *motATrouver)
+void afficherMotATrouver(char* motATrouver)
 {
-    int i = 0;
     cout << "Mot à trouver : ";
-    while(motATrouver[i] != '\0')
+    for(int i = 0; motATrouver[i] != '\0'; i++)
     {
         cout << motATrouver[i] << " ";
-        i++;
     }
     cout << endl;
 }
@@ -35,31 +34,31 @@ void afficherErreurs(int erreurs, int erreursMax)
 char demanderLettre()
 {
     char lettre;
-    cout << "Propose une lettre : ";
+    cout << "Proposez une lettre : ";
     cin >> lettre;
     return lettre;
 }
 
-void afficherVictoire(char *nom, int erreurs, int erreursMax, char *motSecret)
+void afficherVictoire(char* nom, int tentatives, char* motSecret)
 {
-    cout << "Bravo " << nom << ", vous avez gagner avec " << erreurs << " / " << erreursMax << " erreurs" << ", le mot était bien " << motSecret << "!" << endl;
+    cout << "Bravo " << nom << ", vous avez gagné en " << tentatives
+         << " tentatives. Le mot était bien " << motSecret << "." << endl;
 }
 
-void afficherDefaite(char *nom, char *motSecret)
+void afficherDefaite(char* nom, char* motSecret)
 {
-    cout << "Dommage " << nom << ", vous avez perdu, le mot était " << motSecret << "." << endl;
+    cout << "Dommage " << nom << ", vous avez perdu. Le mot était " << motSecret << "." << endl;
 }
 
 void afficherLettreIncorrecte()
 {
-    cout << "Lettre invalide!" << endl;
+    cout << "Lettre invalide !" << endl;
 }
 
-char rejouerPartieReponse()
+char rejouerPartie()
 {
     char reponse;
     cout << "Voulez-vous rejouer ? (O/N) ";
     cin >> reponse;
-    cout << endl;
     return reponse;
 }
