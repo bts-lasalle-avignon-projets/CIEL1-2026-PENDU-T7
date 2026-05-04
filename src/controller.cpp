@@ -1,27 +1,23 @@
 #include "controller.h"
 #include "view.h"
 #include "model.h"
-#ifdef DEBUG_CONTROLLER
-#include <iostream>
-#endif
 
 void jouer()
 {
     char nom[MAX_LETTRES];
+    bool continuer = true;
+
     afficherTitre();
     demanderNomJoueur(nom);
-    jouerPartie(nom);
-    char reponse = rejouerPartieReponse();
-    bool rejouer = testerRejouerPartie(reponse);
-    while(rejouer)
+
+    do
     {
         jouerPartie(nom);
-        char reponse = rejouerPartieReponse();
-        rejouer = testerRejouerPartie(reponse);
-    }
+        continuer = testerRejouerPartie(rejouerPartie());
+    } while(continuer);
 }
 
-void jouerPartie(char *nom)
+void jouerPartie(char* nom)
 {
     Partie partie;
     initialiserPartie(&partie);
@@ -31,32 +27,36 @@ void jouerPartie(char *nom)
         afficherErreurs(partie.erreurs, partie.erreursMax);
         mettreAJourJeu(&partie);
     }
-    afficherResultatPartie(&partie, nom);
+    gererResultatPartie(&partie, nom);
 }
 
-void mettreAJourJeu(Partie *partie)
+void mettreAJourJeu(Partie* partie)
 {
-    char lettre = demanderLettre();
-    int resultatTestLettre = verifierLettre(partie, lettre);
-    if(resultatTestLettre == 1)
+    char       lettre   = demanderLettre();
+    EtatLettre resultat = verifierLettre(partie, lettre);
+
+    switch(resultat)
     {
-        mettreAJourMotATrouver(partie, lettre);
-    }
-    else if(resultatTestLettre == -1)
-    {
-        afficherLettreIncorrecte();
-    }
-    else
-    {
-        partie->erreurs++;
+        case LETTRE_TROUVEE:
+            mettreAJourMotATrouver(partie, lettre);
+            break;
+        case LETTRE_ABSENTE:
+            partie->erreurs++;
+            break;
+        case LETTRE_MAJUSCULE:
+            break;
+        case LETTRE_INVALIDE:
+        default:
+            afficherLettreIncorrecte();
+            break;
     }
 }
 
-void afficherResultatPartie(Partie *partie, char *nom)
+void gererResultatPartie(Partie* partie, char* nom)
 {
     if(testerVictoire(partie))
     {
-        afficherVictoire(nom, partie->erreurs, partie->erreursMax, partie->motSecret);
+        afficherVictoire(nom, partie->erreurs, partie->motSecret);
     }
     else
     {
