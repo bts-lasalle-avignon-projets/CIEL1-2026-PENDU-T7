@@ -5,41 +5,47 @@
 #include <stdlib.h>
 #include <string.h>
 #include <cctype>
-using namespace std;
+#include <ctime>
 
-char mots[][MAX_LETTRES] = {"ordinateur", "clavier", "linux", "processus", "python", "windows", "programmation", "java", "souris"};
+char mots[][MAX_LETTRES] = { "ordinateur", "clavier",       "linux", "processus", "python",
+                             "windows",    "programmation", "java",  "souris" };
 
-void initialiserPartie(Partie *partie)
+void initialiserPartie(Partie* partie)
 {
-    partie->erreurs = 0;
+    partie->erreurs    = 0;
     partie->erreursMax = NB_MAX_ERREURS;
     choisirMotSecret(partie);
     initialiserMotATrouver(partie);
 }
 
-void choisirMotSecret(Partie *partie)
+void choisirMotSecret(Partie* partie)
 {
-    int indiceMotSecret;
-    int nbMots = sizeof(mots) / sizeof(mots[0]); // Nombre de mots dans le tableau.
+    int nbMots = sizeof(mots) / sizeof(mots[0]);
     srand(time(NULL));
-    indiceMotSecret = rand() % nbMots;
-    strcpy(partie->motSecret, mots[indiceMotSecret]);
+    strcpy(partie->motSecret, mots[rand() % nbMots]);
 }
 
-void initialiserMotATrouver(Partie *partie)
+void initialiserMotATrouver(Partie* partie)
 {
-    int longueurMot = strlen(partie->motSecret);
-    for(int i = 0; i < longueurMot; i++)
+    int longueur = strlen(partie->motSecret);
+    for(int i = 0; i < longueur; i++)
     {
-        partie->motATrouver[i] = '_';
+        // Dévoile première + dernière lettre
+        if(i == 0 || i == longueur - 1)
+        {
+            partie->motATrouver[i] = partie->motSecret[i];
+        }
+        else
+        {
+            partie->motATrouver[i] = '_';
+        }
     }
-    partie->motATrouver[longueurMot] = '\0';
+    partie->motATrouver[longueur] = '\0';
 }
 
-void mettreAJourMotATrouver(Partie *partie, char lettre)
+void mettreAJourMotATrouver(Partie* partie, char lettre)
 {
-    int longueurMot = strlen(partie->motSecret);
-    for(int i = 0; i < longueurMot; i++)
+    for(int i = 0; partie->motSecret[i] != '\0'; i++)
     {
         if(partie->motSecret[i] == lettre)
         {
@@ -48,43 +54,39 @@ void mettreAJourMotATrouver(Partie *partie, char lettre)
     }
 }
 
-bool testerVictoire(Partie *partie)
+bool testerVictoire(Partie* partie)
 {
     return strcmp(partie->motSecret, partie->motATrouver) == 0;
 }
 
-bool testerDefaite(Partie *partie)
+bool testerDefaite(Partie* partie)
 {
     return partie->erreurs >= partie->erreursMax;
 }
 
-int verifierLettre(Partie *partie, char lettre)
+EtatLettre verifierLettre(Partie* partie, char lettre)
 {
     if(!isalpha(lettre))
     {
-        return -1;
+        return LETTRE_INVALIDE;
     }
-    lettre = tolower(lettre);
+    if(isupper(lettre))
+    {
+        return LETTRE_MAJUSCULE;
+    }
+
     int longueurMot = strlen(partie->motSecret);
     for(int i = 0; i < longueurMot; i++)
     {
         if(partie->motSecret[i] == lettre)
         {
-            return 1;
+            return LETTRE_TROUVEE;
         }
     }
-    return 0;
+    return LETTRE_ABSENTE;
 }
 
 bool testerRejouerPartie(char reponse)
 {
-    if(reponse == 'o' || reponse == 'O')
-    {
-        return 1;
-    }
-    else if(reponse == 'n' || reponse == 'N')
-    {
-        return 0;
-    }
-    return 0;
+    return (reponse == 'o' || reponse == 'O');
 }
