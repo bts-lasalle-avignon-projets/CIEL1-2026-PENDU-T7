@@ -42,7 +42,7 @@ Julien gagne la partie en complétant le dessin du pendu.
 ```bash
 $ make
 
-$ ./pickomino.out
+$ ./pendu.out
 ```
 
 ![](./images/pendu_V1.gif)
