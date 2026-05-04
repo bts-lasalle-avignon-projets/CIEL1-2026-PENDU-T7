@@ -7,56 +7,21 @@
 #include <cctype>
 #include <ctime>
 
-Theme themesDisponibles[NB_THEMES] = { { "Informatique", "themes/informatique.txt" },
-                                       { "Animaux", "themes/animaux.txt" },
-                                       { "Pays", "themes/pays.txt" },
-                                       { "Sports", "themes/sports.txt" } };
+char mots[][MAX_LETTRES] = { "ordinateur", "clavier",       "linux", "processus", "python",
+                             "windows",    "programmation", "java",  "souris" };
 
-static int chargerMots(const char* fichier, char mots[][MAX_LETTRES], int maxMots)
+void initialiserPartie(Partie* partie)
 {
-    FILE* f = fopen(fichier, "r");
-    if(!f)
-    {
-        return 0;
-    }
-    int n = 0;
-    while(n < maxMots && fgets(mots[n], MAX_LETTRES, f))
-    {
-        // Supprime le '\n' à la fin
-        int len = strlen(mots[n]);
-        if(len > 0 && mots[n][len - 1] == '\n')
-        {
-            mots[n][len - 1] = '\0';
-        }
-        if(strlen(mots[n]) > 0)
-        {
-            n++;
-        }
-    }
-    fclose(f);
-    return n;
+    partie->erreurs    = 0;
+    partie->erreursMax = NB_MAX_ERREURS;
+    choisirMotSecret(partie);
+    initialiserMotATrouver(partie);
 }
 
-void initialiserPartie(Partie* partie, int erreursMax)
+void choisirMotSecret(Partie* partie)
 {
-    partie->erreurs            = 0;
-    partie->erreursMax         = erreursMax;
-    partie->nbLettresProposees = 0;
-    memset(partie->lettresProposees, 0, sizeof(partie->lettresProposees));
-}
-
-void choisirMotSecret(Partie* partie, int themeIndex)
-{
-    char mots[MAX_MOTS_THEME][MAX_LETTRES];
-    int  nbMots = chargerMots(themesDisponibles[themeIndex].fichier, mots, MAX_MOTS_THEME);
-
-    if(nbMots == 0)
-    {
-        strcpy(partie->motSecret, "pendu");
-        return;
-    }
-
-    srand((unsigned int)time(NULL));
+    int nbMots = sizeof(mots) / sizeof(mots[0]);
+    srand(time(NULL));
     strcpy(partie->motSecret, mots[rand() % nbMots]);
 }
 
@@ -99,45 +64,16 @@ bool testerDefaite(Partie* partie)
     return partie->erreurs >= partie->erreursMax;
 }
 
-bool lettreDejaProposee(Partie* partie, char lettre)
-{
-    for(int i = 0; i < partie->nbLettresProposees; i++)
-    {
-        if(partie->lettresProposees[i] == lettre)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void ajouterLettreProposee(Partie* partie, char lettre)
-{
-    if(partie->nbLettresProposees < 26)
-    {
-        partie->lettresProposees[partie->nbLettresProposees++] = lettre;
-        partie->lettresProposees[partie->nbLettresProposees]   = '\0';
-    }
-}
-
 EtatLettre verifierLettre(Partie* partie, char lettre)
 {
     if(!isalpha(lettre))
     {
         return LETTRE_INVALIDE;
     }
-
     if(isupper(lettre))
     {
-        return LETTRE_MAJUSCULE;
+        lettre = tolower(lettre);
     }
-
-    if(lettreDejaProposee(partie, lettre))
-    {
-        return LETTRE_DEJA_PROPOSEE;
-    }
-
-    ajouterLettreProposee(partie, lettre);
 
     int longueurMot = strlen(partie->motSecret);
     for(int i = 0; i < longueurMot; i++)

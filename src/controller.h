@@ -3,7 +3,7 @@
 #include "model.h"
 
 void jouer();
-void jouerPartie(char* nom, int themeIndex, int erreursMax);
+void jouerPartie(char* nom);
 void mettreAJourJeu(Partie* partie);
 void gererResultatPartie(Partie* partie, char* nom);
 

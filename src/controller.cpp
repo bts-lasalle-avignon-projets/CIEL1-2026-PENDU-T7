@@ -1,6 +1,7 @@
 #include "controller.h"
 #include "view.h"
 #include "model.h"
+#include <cctype>
 
 void jouer()
 {
@@ -10,46 +11,33 @@ void jouer()
     afficherTitre();
     demanderNomJoueur(nom);
 
-    int themeIndex = choisirTheme();
-    int erreursMax = choisirDifficulte();
-
     do
     {
-        jouerPartie(nom, themeIndex, erreursMax);
-        char rep  = rejouerPartie();
-        continuer = testerRejouerPartie(rep);
-        if(continuer)
-        {
-            // Permet de changer de thème et/ou de difficulté entre les parties
-            themeIndex = choisirTheme();
-            erreursMax = choisirDifficulte();
-        }
+        jouerPartie(nom);
+        continuer = testerRejouerPartie(rejouerPartie());
     } while(continuer);
 }
 
-void jouerPartie(char* nom, int themeIndex, int erreursMax)
+void jouerPartie(char* nom)
 {
     Partie partie;
-    initialiserPartie(&partie, erreursMax);
-    choisirMotSecret(&partie, themeIndex);
-    initialiserMotATrouver(&partie);
-
+    initialiserPartie(&partie);
     while(!testerVictoire(&partie) && !testerDefaite(&partie))
     {
-        afficherPendu(partie.erreurs, partie.erreursMax);
         afficherMotATrouver(partie.motATrouver);
-        afficherLettresProposees(&partie);
         afficherErreurs(partie.erreurs, partie.erreursMax);
         mettreAJourJeu(&partie);
     }
-
-    afficherPendu(partie.erreurs, partie.erreursMax);
     gererResultatPartie(&partie, nom);
 }
 
 void mettreAJourJeu(Partie* partie)
 {
-    char       lettre   = demanderLettre();
+    char lettre = demanderLettre();
+    if(isupper(lettre))
+    {
+        lettre = tolower(lettre);
+    }
     EtatLettre resultat = verifierLettre(partie, lettre);
 
     switch(resultat)
@@ -59,9 +47,6 @@ void mettreAJourJeu(Partie* partie)
             break;
         case LETTRE_ABSENTE:
             partie->erreurs++;
-            break;
-        case LETTRE_DEJA_PROPOSEE:
-            afficherLettreDejaProposee();
             break;
         case LETTRE_MAJUSCULE:
             break;
