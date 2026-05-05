@@ -1,6 +1,7 @@
 #include "controller.h"
 #include "view.h"
 #include "model.h"
+#include <cctype>
 
 void jouer()
 {
@@ -32,7 +33,11 @@ void jouerPartie(char* nom)
 
 void mettreAJourJeu(Partie* partie)
 {
-    char       lettre   = demanderLettre();
+    char lettre = demanderLettre();
+    if(isupper(lettre))
+    {
+        lettre = tolower(lettre);
+    }
     EtatLettre resultat = verifierLettre(partie, lettre);
 
     switch(resultat)

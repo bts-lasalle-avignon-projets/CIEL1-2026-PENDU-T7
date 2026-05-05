@@ -12,6 +12,7 @@
   - [Changelog](#changelog)
     - [Version 1.0](#version-10)
     - [Version 1.1](#version-11)
+    - [Version 1.2](#version-12)
   - [TODO](#todo)
   - [Équipe de développement](#équipe-de-développement)
 
@@ -86,6 +87,11 @@ $ ./pendu.out
 
 - [x] Dévoiler la première et la dernière lettre du mot
 - [x] Saisir une lettre en capitale n'est pas valide
+
+### Version 1.2
+
+- [x] Accepter uniquement les saisies ('o', 'O', 'n', 'N') suite à la question pour rejouer
+- [x] Saisir une lettre en capitale est accepté / valide
 
 ## TODO
 

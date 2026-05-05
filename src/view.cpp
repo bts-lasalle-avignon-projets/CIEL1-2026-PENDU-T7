@@ -58,7 +58,10 @@ void afficherLettreIncorrecte()
 char rejouerPartie()
 {
     char reponse;
-    cout << "Voulez-vous rejouer ? (O/N) ";
-    cin >> reponse;
+    do
+    {
+        cout << "Voulez-vous rejouer ? (O/N) ";
+        cin >> reponse;
+    } while(reponse != 'O' && reponse != 'o' && reponse != 'N' && reponse != 'n');
     return reponse;
 }

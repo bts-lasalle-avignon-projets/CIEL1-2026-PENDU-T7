@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#define VERSION        "1.1"
+#define VERSION        "1.2"
 #define MAX_LETTRES    15
 #define NB_MAX_ERREURS 6
 

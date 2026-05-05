@@ -72,7 +72,7 @@ EtatLettre verifierLettre(Partie* partie, char lettre)
     }
     if(isupper(lettre))
     {
-        return LETTRE_MAJUSCULE;
+        lettre = tolower(lettre);
     }
 
     int longueurMot = strlen(partie->motSecret);
