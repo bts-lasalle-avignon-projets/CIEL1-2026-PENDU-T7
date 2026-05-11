@@ -45,9 +45,17 @@ int choisirTheme()
     do
     {
         cout << "Votre choix (1-" << NB_THEMES << ") : ";
-        cin >> choix;
+        if(!(cin >> choix))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            choix = 0;
+        }
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     } while(choix < 1 || choix > NB_THEMES);
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     return choix - 1;
 }
 
@@ -61,9 +69,17 @@ int choisirDifficulte()
     do
     {
         cout << "Votre choix (1-" << NB_NIVEAUX << ") : ";
-        cin >> choix;
+        if(!(cin >> choix))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            choix = 0;
+        }
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     } while(choix < 1 || choix > NB_NIVEAUX);
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     switch(choix)
     {
@@ -125,8 +141,30 @@ void afficherLettresProposees(Partie* partie)
 
 void demanderSaisie(char* buffer, int taille)
 {
-    cout << "Proposez une lettre ou le mot entier : ";
-    cin.getline(buffer, taille);
+    bool saisieValide = false;
+    do
+    {
+        cout << "Proposez une lettre ou le mot entier : ";
+        cin.getline(buffer, taille);
+
+        // Ignorer les lignes vides
+        if(buffer[0] == '\0')
+        {
+            continue;
+        }
+
+        // Vérifier qu'il n'y a pas d'espace dans la saisie
+        saisieValide = true;
+        for(int i = 0; buffer[i] != '\0'; i++)
+        {
+            if(buffer[i] == ' ')
+            {
+                cout << "Lettre invalide ! Saisissez une lettre minuscule." << endl;
+                saisieValide = false;
+                break;
+            }
+        }
+    } while(!saisieValide);
 }
 
 char demanderLettre()
@@ -141,8 +179,8 @@ char demanderLettre()
 void afficherVictoire(char* nom, int tentatives, char* motSecret)
 {
     cout << "\033[32m"
-         << "Bravo " << nom << ", vous avez gagné en " << tentatives
-         << " tentatives. Le mot était bien " << motSecret << "."
+         << "Bravo " << nom << ", vous avez gagné en " << tentatives << " tentative"
+         << (tentatives > 1 ? "s" : "") << ". Le mot était bien " << motSecret << "."
          << "\033[0m" << endl;
 }
 
@@ -161,6 +199,11 @@ void afficherLettreIncorrecte()
 void afficherLettreDejaProposee()
 {
     cout << "Vous avez déjà proposé cette lettre !" << endl;
+}
+
+void afficherMauvaisMot()
+{
+    cout << "Mauvais mot !" << endl;
 }
 
 char rejouerPartie()

@@ -16,6 +16,7 @@ void afficherVictoire(char* nom, int tentatives, char* motSecret);
 void afficherDefaite(char* nom, char* motSecret);
 void afficherLettreIncorrecte();
 void afficherLettreDejaProposee();
+void afficherMauvaisMot();
 char rejouerPartie();
 
 #endif

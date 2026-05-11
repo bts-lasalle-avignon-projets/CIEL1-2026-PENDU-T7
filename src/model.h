@@ -7,15 +7,15 @@
 #define MAX_MOTS_THEME     100
 #define NB_THEMES          4
 #define MAX_FICHIER        64 // taille max du chemin de fichier d'un thème
-#define NB_LETTRES_ALPHA   26 // nombre lettres alphabet
-#define NB_ETAPES_PENDU    6  // nb étapes affichage pendu
+#define NB_LETTRES_ALPHA   26 // nb lettres de l'alphabet
+#define NB_ETAPES_PENDU    6  // nb étapes d'affichage du pendu
 #define ETAPE_TETE         1
 #define ETAPE_TRONC        2
 #define ETAPE_BRAS_GAUCHE  3
 #define ETAPE_BRAS_DROIT   4
 #define ETAPE_JAMBE_GAUCHE 5
 #define ETAPE_JAMBE_DROITE NB_ETAPES_PENDU
-#define NB_NIVEAUX         3 // nb niveaux difficulté
+#define NB_NIVEAUX         3 // nb niveaux de difficulté
 
 enum EtatLettre
 {
@@ -49,7 +49,7 @@ struct Partie
     int  nbLettresProposees;
 };
 
-// thèmes
+// Thèmes
 extern Theme themesDisponibles[NB_THEMES];
 
 void       initialiserPartie(Partie* partie, int erreursMax);
@@ -62,6 +62,7 @@ EtatLettre verifierLettre(Partie* partie, char lettre);
 bool       testerRejouerPartie(char reponse);
 void       ajouterLettreProposee(Partie* partie, char lettre);
 bool       lettreDejaProposee(Partie* partie, char lettre);
+void       ajouterTentative(Partie* partie);
 bool       devinerMot(Partie* partie, const char* mot);
 
 #endif // MODEL_H

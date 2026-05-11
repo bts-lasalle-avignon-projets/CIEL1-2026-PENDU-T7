@@ -3,7 +3,6 @@
 #include "model.h"
 #include <cctype>
 #include <cstring>
-#include <iostream>
 using namespace std;
 
 void jouer()
@@ -23,7 +22,6 @@ void jouer()
         continuer = testerRejouerPartie(rejouerPartie());
         if(continuer)
         {
-            // Permet de changer de thème et/ou de difficulté entre les parties
             themeIndex = choisirTheme();
             erreursMax = choisirDifficulte();
         }
@@ -55,17 +53,19 @@ void mettreAJourJeu(Partie* partie)
     char saisie[MAX_LETTRES];
     demanderSaisie(saisie, MAX_LETTRES);
 
-    // si plus de 1 char, alors c'est un mot
+    // Si saisie > 1 char, c'est une tentative de mot
     if(strlen(saisie) > 1)
     {
+        ajouterTentative(partie);
         if(!devinerMot(partie, saisie))
         {
             partie->erreurs++;
-            cout << "Mauvais mot !" << endl;
+            afficherMauvaisMot();
         }
         return;
     }
 
+    // Sinon traitement normal d'une lettre
     char lettre = saisie[0];
     if(isupper(lettre))
     {
@@ -97,7 +97,7 @@ void gererResultatPartie(Partie* partie, char* nom)
 {
     if(testerVictoire(partie))
     {
-        afficherVictoire(nom, partie->erreurs, partie->motSecret);
+        afficherVictoire(nom, partie->nbLettresProposees, partie->motSecret);
     }
     else
     {

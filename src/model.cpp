@@ -154,6 +154,11 @@ bool testerRejouerPartie(char reponse)
     return (reponse == 'o' || reponse == 'O');
 }
 
+void ajouterTentative(Partie* partie)
+{
+    partie->nbLettresProposees++;
+}
+
 bool devinerMot(Partie* partie, const char* mot)
 {
     if(strcmp(partie->motSecret, mot) == 0)
