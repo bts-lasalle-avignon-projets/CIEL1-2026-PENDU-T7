@@ -13,6 +13,7 @@
     - [Version 1.0](#version-10)
     - [Version 1.1](#version-11)
     - [Version 1.2](#version-12)
+    - [Version 2.0](#version-20)
   - [TODO](#todo)
   - [Équipe de développement](#équipe-de-développement)
 
@@ -93,13 +94,26 @@ $ ./pendu.out
 - [x] Accepter uniquement les saisies ('o', 'O', 'n', 'N') suite à la question pour rejouer
 - [x] Saisir une lettre en capitale est accepté / valide
 
+### Version 2.0
+
+- [x] Choisir un thème parmi plusieurs (Informatique, Animaux, Pays, Sports)
+- [x] Choisir un niveau de difficulté (Facile, Normal, Difficile)
+- [x] Charger les mots depuis des fichiers .txt par thème
+- [x] Afficher graphiquement le pendu selon le nombre d'erreurs
+- [x] Afficher les lettres déjà proposées (en vert si dans le mot, sinon en rouge)
+- [x] Détecter et refuser une lettre déjà proposée
+- [x] Proposer le mot entier en une seule saisie
+- [x] Compter le nombre de tentatives (lettres + mots proposés)
+- [x] Afficher le nombre de tentatives en fin de partie avec l'accord singulier/pluriel
+- [x] Afficher la victoire en vert et la défaite en rouge
+- [x] Changer de thème et de difficulté entre chaque partie
+- [x] Corriger les saisies invalides dans les menus (lettres au lieu de chiffres)
+
 ## TODO
 
-- [ ] Pouvoir choisir une difficulté
-- [ ] Pouvoir choisir des thèmes
-- [ ] Implémenter une fonction permettant de vérifier si le mot saisi est le mot secret
-- [ ] Visualiser les lettres proposées
-
+- [ ] Ajouter un menu principal (Jouer, Règles du jeu, Quitter)
+- [ ] Chronométrer la partie
+- [ ] Sauvegarder les meilleurs scores
 
 ## Équipe de développement
 
