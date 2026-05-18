@@ -31,7 +31,7 @@
         <a href="https://github.com/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/actions"><img src="https://img.shields.io/github/check-runs/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/develop" alt="check"/></a>
         </td>
         <td>
-        <a href="https://github.com/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/actions/workflows/c-cpp.yml"><img src="https://img.shields.io/github/actions/workflow/status/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/c-cpp.yml" alt="build"/></a>
+        <a href="https://github.com/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/actions/workflows/c-cpp.yml"><img src="https://img.shields.io/github/actions/workflow/status/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/make.yml" alt="build"/></a>
         </td>
     </tr>
 </table>
@@ -120,7 +120,7 @@
 
 ## Présentation
 
-L'objectif de ce mini-projet est de réaliser une application simple en C++ en appliquant une méthode de développement agile basée sur Kanban et Gitflow.
+L'objectif de ce mini-projet est de **réaliser une application simple en C++ en appliquant une méthode de développement agile basée sur Kanban et Gitflow**.
 
 Le pendu est un jeu consistant à trouver un mot en devinant quelles sont les lettres qui le composent. Le jeu se joue traditionnellement à deux, avec un papier et un crayon, selon un déroulement bien particulier. Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L'origine du jeu du pendu est inconnue. En Grande-Bretagne, il semble avoir fait son apparition pendant l'époque victorienne, vers la fin du XIXe siècle.
 
@@ -226,4 +226,4 @@ $ ./pendu.out
 - GREINER Jovan : jovandelemer30@gmail.com
 
 ---
-&copy; 2026-2027 BTS LaSalle Avignon
+&copy; 2026 BTS LaSalle Avignon
