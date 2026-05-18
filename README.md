@@ -97,8 +97,6 @@
     </tr>
 </table>
 
-# Mini-projet BTS CIEL IR1 2026 : PENDU
-
 # Mini-projet : Pendu
 - [Mini-projet : Pendu](#mini-projet--pendu)
   - [Présentation](#présentation)
