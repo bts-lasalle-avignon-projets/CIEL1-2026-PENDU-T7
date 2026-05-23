@@ -2,6 +2,7 @@
 #include "model.h"
 #include <iostream>
 #include <cstring>
+#include <cstdio>
 #include <limits>
 using namespace std;
 
@@ -25,6 +26,52 @@ void afficherTitre()
     cout << "==================" << endl;
     cout << "   Pendu v" << VERSION << endl;
     cout << "==================" << endl;
+}
+
+void afficherMenu()
+{
+    cout << "\n-- Menu principal --" << endl;
+    cout << "  " << MENU_JOUER << ". Jouer" << endl;
+    cout << "  " << MENU_REGLES << ". Règles du jeu" << endl;
+    cout << "  " << MENU_QUITTER << ". Quitter" << endl;
+}
+
+int choisirMenu()
+{
+    int choix = 0;
+    do
+    {
+        cout << "Votre choix (1-" << NB_CHOIX_MENU << ") : ";
+        if(!(cin >> choix))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            choix = 0;
+        }
+        else
+        {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while(choix < MENU_JOUER || choix > MENU_QUITTER);
+    return choix;
+}
+
+void afficherRegles()
+{
+    cout << "\n========== Règles du jeu ==========" << endl;
+    cout << "Le but est de deviner un mot secret lettre par lettre." << endl;
+    cout << "- La première et la dernière lettre du mot sont révélées." << endl;
+    cout << "- Proposez une lettre ou le mot entier à chaque tour." << endl;
+    cout << "- Une lettre absente du mot coûte une erreur." << endl;
+    cout << "- Un mot entier incorrect coûte aussi une erreur." << endl;
+    cout << "- Les lettres correctes s'affichent en vert," << endl;
+    cout << "  les lettres incorrectes en rouge." << endl;
+    cout << "- La partie est perdue si vous atteignez le nombre" << endl;
+    cout << "  maximum d'erreurs selon la difficulté choisie :" << endl;
+    cout << "    Facile    : " << (int)FACILE << " erreurs max" << endl;
+    cout << "    Normal    : " << (int)NORMAL << " erreurs max" << endl;
+    cout << "    Difficile : " << (int)DIFFICILE << " erreurs max" << endl;
+    cout << "====================================" << endl;
 }
 
 void demanderNomJoueur(char* nom)
@@ -176,12 +223,69 @@ char demanderLettre()
     return lettre;
 }
 
-void afficherVictoire(char* nom, int tentatives, char* motSecret)
+void afficherTemps(int secondes)
+{
+    int minutes = secondes / 60;
+    int secs    = secondes % 60;
+    if(minutes > 0)
+    {
+        cout << "Temps : " << minutes << " min " << secs << " sec" << endl;
+    }
+    else
+    {
+        cout << "Temps : " << secs << " sec" << endl;
+    }
+}
+
+void afficherVictoire(char* nom, int tentatives, char* motSecret, int secondes)
 {
     cout << "\033[32m"
          << "Bravo " << nom << ", vous avez gagné en " << tentatives << " tentative"
          << (tentatives > 1 ? "s" : "") << ". Le mot était bien " << motSecret << "."
          << "\033[0m" << endl;
+    afficherTemps(secondes);
+}
+
+void afficherScores(Score scores[], int nbScores)
+{
+    cout << "\n===== Meilleurs scores =====" << endl;
+    if(nbScores == 0)
+    {
+        cout << "Aucun score enregistré." << endl;
+    }
+    else
+    {
+        cout << "  #  Nom            Mot            Erreurs  Tentatives  Temps   Thème         "
+                "Difficulté"
+             << endl;
+        cout << "  -- -------------- -------------- -------- ----------- ------- ------------- "
+                "----------"
+             << endl;
+        for(int i = 0; i < nbScores; i++)
+        {
+            int  minutes = scores[i].temps / 60;
+            int  secs    = scores[i].temps % 60;
+            char temps[16];
+            if(minutes > 0)
+            {
+                sprintf(temps, "%dm%02ds", minutes, secs);
+            }
+            else
+            {
+                sprintf(temps, "%ds", secs);
+            }
+            printf("  %-2d %-14s %-14s %-8d %-11d %-7s %-13s %d erreurs max\n",
+                   i + 1,
+                   scores[i].nom,
+                   scores[i].mot,
+                   scores[i].erreurs,
+                   scores[i].tentatives,
+                   temps,
+                   scores[i].theme,
+                   scores[i].difficulte);
+        }
+    }
+    cout << "============================" << endl;
 }
 
 void afficherDefaite(char* nom, char* motSecret)

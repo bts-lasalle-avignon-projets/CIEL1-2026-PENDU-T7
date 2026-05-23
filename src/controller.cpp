@@ -3,29 +3,56 @@
 #include "model.h"
 #include <cctype>
 #include <cstring>
+#include <ctime>
 using namespace std;
 
 void jouer()
 {
-    char nom[MAX_LETTRES];
-    bool continuer = true;
-
     afficherTitre();
-    demanderNomJoueur(nom);
+    gererMenu();
+}
 
-    int themeIndex = choisirTheme();
-    int erreursMax = choisirDifficulte();
-
+void gererMenu()
+{
+    int choix;
     do
     {
-        jouerPartie(nom, themeIndex, erreursMax);
-        continuer = testerRejouerPartie(rejouerPartie());
-        if(continuer)
+        afficherMenu();
+        choix = choisirMenu();
+
+        switch(choix)
         {
-            themeIndex = choisirTheme();
-            erreursMax = choisirDifficulte();
+            case MENU_JOUER:
+            {
+                char nom[MAX_NOM_JOUEUR];
+                demanderNomJoueur(nom);
+                int  themeIndex = choisirTheme();
+                int  erreursMax = choisirDifficulte();
+                bool continuer  = true;
+                do
+                {
+                    jouerPartie(nom, themeIndex, erreursMax);
+                    continuer = testerRejouerPartie(rejouerPartie());
+                    if(continuer)
+                    {
+                        themeIndex = choisirTheme();
+                        erreursMax = choisirDifficulte();
+                    }
+                } while(continuer);
+
+                // Afficher les meilleurs scores après la session
+                Score scores[TOP_SCORES];
+                int   nbScores = chargerScores(scores, TOP_SCORES);
+                afficherScores(scores, nbScores);
+                break;
+            }
+            case MENU_REGLES:
+                afficherRegles();
+                break;
+            case MENU_QUITTER:
+                break;
         }
-    } while(continuer);
+    } while(choix != MENU_QUITTER);
 }
 
 void jouerPartie(char* nom, int themeIndex, int erreursMax)
@@ -34,6 +61,8 @@ void jouerPartie(char* nom, int themeIndex, int erreursMax)
     initialiserPartie(&partie, erreursMax);
     choisirMotSecret(&partie, themeIndex);
     initialiserMotATrouver(&partie);
+
+    time_t debut = time(NULL);
 
     while(!testerVictoire(&partie) && !testerDefaite(&partie))
     {
@@ -44,8 +73,10 @@ void jouerPartie(char* nom, int themeIndex, int erreursMax)
         mettreAJourJeu(&partie);
     }
 
+    int secondes = (int)(time(NULL) - debut);
+
     afficherPendu(partie.erreurs, partie.erreursMax);
-    gererResultatPartie(&partie, nom);
+    gererResultatPartie(&partie, nom, themeIndex, secondes);
 }
 
 void mettreAJourJeu(Partie* partie)
@@ -93,11 +124,24 @@ void mettreAJourJeu(Partie* partie)
     }
 }
 
-void gererResultatPartie(Partie* partie, char* nom)
+void gererResultatPartie(Partie* partie, char* nom, int themeIndex, int secondes)
 {
     if(testerVictoire(partie))
     {
-        afficherVictoire(nom, partie->nbLettresProposees, partie->motSecret);
+        afficherVictoire(nom, partie->nbLettresProposees, partie->motSecret, secondes);
+
+        Score score;
+        strncpy(score.nom, nom, MAX_NOM_JOUEUR - 1);
+        strncpy(score.mot, partie->motSecret, MAX_LETTRES - 1);
+        strncpy(score.theme, themesDisponibles[themeIndex].nom, MAX_LETTRES - 1);
+        score.nom[MAX_NOM_JOUEUR - 1] = '\0';
+        score.mot[MAX_LETTRES - 1]    = '\0';
+        score.theme[MAX_LETTRES - 1]  = '\0';
+        score.erreurs                 = partie->erreurs;
+        score.tentatives              = partie->nbLettresProposees;
+        score.temps                   = secondes;
+        score.difficulte              = partie->erreursMax;
+        sauvegarderScore(&score);
     }
     else
     {
