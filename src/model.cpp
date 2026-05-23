@@ -168,3 +168,99 @@ bool devinerMot(Partie* partie, const char* mot)
     }
     return false;
 }
+
+int chargerScores(Score scores[], int maxScores)
+{
+    FILE* f = fopen(FICHIER_SCORES, "r");
+    if(!f)
+    {
+        return 0;
+    }
+    int n = 0;
+    while(n < maxScores && fscanf(f,
+                                  "%29s %29s %d %d %d %29s %d",
+                                  scores[n].nom,
+                                  scores[n].mot,
+                                  &scores[n].erreurs,
+                                  &scores[n].tentatives,
+                                  &scores[n].temps,
+                                  scores[n].theme,
+                                  &scores[n].difficulte) == 7)
+    {
+        n++;
+    }
+    fclose(f);
+    return n;
+}
+
+void trierScores(Score scores[], int nbScores)
+{
+    // Tri par erreurs croissant, puis temps croissant
+    for(int i = 0; i < nbScores - 1; i++)
+    {
+        for(int j = i + 1; j < nbScores; j++)
+        {
+            if(scores[j].erreurs < scores[i].erreurs ||
+               (scores[j].erreurs == scores[i].erreurs && scores[j].temps < scores[i].temps))
+            {
+                Score tmp = scores[i];
+                scores[i] = scores[j];
+                scores[j] = tmp;
+            }
+        }
+    }
+}
+
+void sauvegarderScore(Score* score)
+{
+    Score scores[TOP_SCORES];
+    int   nbScores = chargerScores(scores, TOP_SCORES);
+
+    if(nbScores < TOP_SCORES)
+    {
+        scores[nbScores++] = *score;
+    }
+    else
+    {
+        // Remplacer le pire score si le nouveau est meilleur
+        int pire = 0;
+        for(int i = 1; i < nbScores; i++)
+        {
+            if(scores[i].erreurs > scores[pire].erreurs ||
+               (scores[i].erreurs == scores[pire].erreurs && scores[i].temps > scores[pire].temps))
+            {
+                pire = i;
+            }
+        }
+        if(score->erreurs < scores[pire].erreurs ||
+           (score->erreurs == scores[pire].erreurs && score->temps < scores[pire].temps))
+        {
+            scores[pire] = *score;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    trierScores(scores, nbScores);
+
+    FILE* f = fopen(FICHIER_SCORES, "w");
+    if(!f)
+    {
+        return;
+    }
+    for(int i = 0; i < nbScores; i++)
+    {
+        fprintf(f,
+                "%s %s %d %d %d %s %d\n",
+                scores[i].nom,
+                scores[i].mot,
+                scores[i].erreurs,
+                scores[i].tentatives,
+                scores[i].temps,
+                scores[i].theme,
+                scores[i].difficulte);
+    }
+    fclose(f);
+}
