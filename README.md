@@ -111,6 +111,7 @@
     - [Version 1.1](#version-11)
     - [Version 1.2](#version-12)
     - [Version 2.0](#version-20)
+    - [Version 3.0](#version-30)
   - [TODO](#todo)
   - [Équipe de développement](#équipe-de-développement)
 
@@ -147,7 +148,7 @@ $ make
 $ ./pendu.out
 ```
 
-![](./images/pendu_V2.gif)
+![](./images/pendu_V3.gif)
 
 ---
 
@@ -210,13 +211,24 @@ $ ./pendu.out
 - [x] Changer de thème et de difficulté entre chaque partie
 - [x] Corriger les saisies invalides dans les menus (lettres au lieu de chiffres)
 
-## TODO
-
 ### Version 3.0
 
-- [ ] Ajouter un menu principal (Jouer, Règles du jeu, Quitter)
-- [ ] Chronométrer la partie
-- [ ] Sauvegarder les meilleurs scores
+- [x] Ajouter un menu principal (Jouer, Règles du jeu, Quitter)
+- [x] Afficher les règles du jeu depuis le menu
+- [x] Chronométrer la partie et afficher le temps en fin de partie
+- [x] Sauvegarder les meilleurs scores dans un fichier `scores.txt`
+- [x] Afficher le top 10 des meilleurs scores après chaque session de jeu
+- [x] Trier les scores par nombre d'erreurs croissant puis par temps croissant
+
+## TODO
+
+### Version 4.0
+
+- [ ] Ajouter une option pour réinitialiser les scores
+- [ ] Ajouter un indice (révéler une lettre supplémentaire au coût d'une erreur)
+- [ ] Ajouter de nouveaux thèmes (Capitales, Films, Marques...)
+- [ ] Ajouter un mode multijoueur (deux joueurs en alternance)
+- [ ] Ajouter une interface graphique
 
 ## Équipe de développement
 
