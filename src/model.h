@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#define VERSION            "2.0"
+#define VERSION            "3.0"
 #define MAX_LETTRES        30
 #define NB_MAX_ERREURS     8 // niveau facile
 #define MAX_MOTS_THEME     100
@@ -15,7 +15,11 @@
 #define ETAPE_BRAS_DROIT   4
 #define ETAPE_JAMBE_GAUCHE 5
 #define ETAPE_JAMBE_DROITE NB_ETAPES_PENDU
-#define NB_NIVEAUX         3 // nb niveaux de difficulté
+#define NB_NIVEAUX         3  // nb niveaux de difficulté
+#define NB_CHOIX_MENU      3  // nb options du menu principal
+#define TOP_SCORES         10 // nb de meilleurs scores sauvegardés
+#define MAX_NOM_JOUEUR     30 // taille max du nom du joueur
+#define FICHIER_SCORES     "scores.txt"
 
 enum EtatLettre
 {
@@ -31,6 +35,13 @@ enum Difficulte
     FACILE    = 8,
     NORMAL    = 6,
     DIFFICILE = 4
+};
+
+enum ChoixMenu
+{
+    MENU_JOUER   = 1,
+    MENU_REGLES  = 2,
+    MENU_QUITTER = 3
 };
 
 struct Theme
@@ -49,6 +60,17 @@ struct Partie
     int  nbLettresProposees;
 };
 
+struct Score
+{
+    char nom[MAX_NOM_JOUEUR];
+    char mot[MAX_LETTRES];
+    int  erreurs;
+    int  tentatives;
+    int  temps; // en secondes
+    char theme[MAX_LETTRES];
+    int  difficulte;
+};
+
 // Thèmes
 extern Theme themesDisponibles[NB_THEMES];
 
@@ -64,5 +86,8 @@ void       ajouterLettreProposee(Partie* partie, char lettre);
 bool       lettreDejaProposee(Partie* partie, char lettre);
 void       ajouterTentative(Partie* partie);
 bool       devinerMot(Partie* partie, const char* mot);
+int        chargerScores(Score scores[], int maxScores);
+void       sauvegarderScore(Score* score);
+void       trierScores(Score scores[], int nbScores);
 
 #endif // MODEL_H

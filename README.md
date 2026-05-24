@@ -31,7 +31,7 @@
         <a href="https://github.com/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/actions"><img src="https://img.shields.io/github/check-runs/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/develop" alt="check"/></a>
         </td>
         <td>
-        <a href="https://github.com/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/actions/workflows/c-cpp.yml"><img src="https://img.shields.io/github/actions/workflow/status/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/c-cpp.yml" alt="build"/></a>
+        <a href="https://github.com/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/actions/workflows/c-cpp.yml"><img src="https://img.shields.io/github/actions/workflow/status/bts-lasalle-avignon-projets/CIEL1-2026-PENDU-T7/make.yml" alt="build"/></a>
         </td>
     </tr>
 </table>
@@ -97,8 +97,6 @@
     </tr>
 </table>
 
-# Mini-projet BTS CIEL IR1 2026 : PENDU
-
 # Mini-projet : Pendu
 - [Mini-projet : Pendu](#mini-projet--pendu)
   - [Présentation](#présentation)
@@ -113,6 +111,7 @@
     - [Version 1.1](#version-11)
     - [Version 1.2](#version-12)
     - [Version 2.0](#version-20)
+    - [Version 3.0](#version-30)
   - [TODO](#todo)
   - [Équipe de développement](#équipe-de-développement)
 
@@ -120,7 +119,7 @@
 
 ## Présentation
 
-L'objectif de ce mini-projet est de réaliser une application simple en C++ en appliquant une méthode de développement agile basée sur Kanban et Gitflow.
+L'objectif de ce mini-projet est de **réaliser une application simple en C++ en appliquant une méthode de développement agile basée sur Kanban et Gitflow**.
 
 Le pendu est un jeu consistant à trouver un mot en devinant quelles sont les lettres qui le composent. Le jeu se joue traditionnellement à deux, avec un papier et un crayon, selon un déroulement bien particulier. Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L'origine du jeu du pendu est inconnue. En Grande-Bretagne, il semble avoir fait son apparition pendant l'époque victorienne, vers la fin du XIXe siècle.
 
@@ -149,7 +148,7 @@ $ make
 $ ./pendu.out
 ```
 
-![](./images/pendu_V2.gif)
+![](./images/pendu_V3.gif)
 
 ---
 
@@ -212,13 +211,24 @@ $ ./pendu.out
 - [x] Changer de thème et de difficulté entre chaque partie
 - [x] Corriger les saisies invalides dans les menus (lettres au lieu de chiffres)
 
-## TODO
-
 ### Version 3.0
 
-- [ ] Ajouter un menu principal (Jouer, Règles du jeu, Quitter)
-- [ ] Chronométrer la partie
-- [ ] Sauvegarder les meilleurs scores
+- [x] Ajouter un menu principal (Jouer, Règles du jeu, Quitter)
+- [x] Afficher les règles du jeu depuis le menu
+- [x] Chronométrer la partie et afficher le temps en fin de partie
+- [x] Sauvegarder les meilleurs scores dans un fichier `scores.txt`
+- [x] Afficher le top 10 des meilleurs scores après chaque session de jeu
+- [x] Trier les scores par nombre d'erreurs croissant puis par temps croissant
+
+## TODO
+
+### Version 4.0
+
+- [ ] Ajouter une option pour réinitialiser les scores
+- [ ] Ajouter un indice (révéler une lettre supplémentaire au coût d'une erreur)
+- [ ] Ajouter de nouveaux thèmes (Capitales, Films, Marques...)
+- [ ] Ajouter un mode multijoueur (deux joueurs en alternance)
+- [ ] Ajouter une interface graphique
 
 ## Équipe de développement
 
@@ -226,4 +236,4 @@ $ ./pendu.out
 - GREINER Jovan : jovandelemer30@gmail.com
 
 ---
-&copy; 2026-2027 BTS LaSalle Avignon
+&copy; 2026 BTS LaSalle Avignon
