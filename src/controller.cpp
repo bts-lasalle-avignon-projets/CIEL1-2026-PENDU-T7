@@ -97,11 +97,7 @@ void mettreAJourJeu(Partie* partie)
     }
 
     // Sinon traitement normal d'une lettre
-    char lettre = saisie[0];
-    if(isupper(lettre))
-    {
-        lettre = tolower(lettre);
-    }
+    char       lettre   = saisie[0];
     EtatLettre resultat = verifierLettre(partie, lettre);
 
     switch(resultat)

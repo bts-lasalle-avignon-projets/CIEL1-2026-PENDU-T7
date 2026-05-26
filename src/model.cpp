@@ -51,12 +51,17 @@ void choisirMotSecret(Partie* partie, int themeIndex)
 
     if(nbMots == 0)
     {
-        strcpy(partie->motSecret, "pendu");
+        strcpy(partie->motSecret, "PENDU");
         return;
     }
 
     srand((unsigned int)time(NULL));
     strcpy(partie->motSecret, mots[rand() % nbMots]);
+
+    for(int i = 0; partie->motSecret[i] != '\0'; i++)
+    {
+        partie->motSecret[i] = toupper(partie->motSecret[i]);
+    }
 }
 
 void initialiserMotATrouver(Partie* partie)
@@ -79,6 +84,7 @@ void initialiserMotATrouver(Partie* partie)
 
 void mettreAJourMotATrouver(Partie* partie, char lettre)
 {
+    lettre = toupper(lettre);
     for(int i = 0; partie->motSecret[i] != '\0'; i++)
     {
         if(partie->motSecret[i] == lettre)
@@ -126,10 +132,7 @@ EtatLettre verifierLettre(Partie* partie, char lettre)
         return LETTRE_INVALIDE;
     }
 
-    if(isupper(lettre))
-    {
-        return LETTRE_MAJUSCULE;
-    }
+    lettre = toupper(lettre);
 
     if(lettreDejaProposee(partie, lettre))
     {
@@ -161,7 +164,15 @@ void ajouterTentative(Partie* partie)
 
 bool devinerMot(Partie* partie, const char* mot)
 {
-    if(strcmp(partie->motSecret, mot) == 0)
+    char motMaj[MAX_LETTRES];
+    strncpy(motMaj, mot, MAX_LETTRES - 1);
+    motMaj[MAX_LETTRES - 1] = '\0';
+    for(int i = 0; motMaj[i] != '\0'; i++)
+    {
+        motMaj[i] = toupper(motMaj[i]);
+    }
+
+    if(strcmp(partie->motSecret, motMaj) == 0)
     {
         strcpy(partie->motATrouver, partie->motSecret);
         return true;
@@ -186,9 +197,7 @@ int chargerScores(Score scores[], int maxScores)
                                   &scores[n].temps,
                                   scores[n].theme,
                                   &scores[n].difficulte) == 7)
-    {
         n++;
-    }
     fclose(f);
     return n;
 }
